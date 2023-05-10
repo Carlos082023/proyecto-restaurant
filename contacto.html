@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Contacto</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device width, initial-escale=1.0">
+    <link href="CSS/estiloresto.css" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/10727f08ef.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="imagenes/logo1.png" href="imagenes/logo1.png">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container logo-nav-container">
+            <a href="index.html" id="logo">GROUP2</a>
+
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="Menu.html">Menu</a>
+                        <ul>
+                            <li><a href="Menu.html#entradas">Entradas</a></li>
+                            <li><a href="Menu.html#plato-principal">Plato principal</a></li>
+                            <li><a href="Menu.html#postre">Postres</a></li>
+                            <li><a href="Menu.html#bebida">Bebidas</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="Locales.html">Locales</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="Novedades.html">Novedades</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <form method="post" action="envio/envio.php">
+            <div id="contacto">
+                <h4>Formulario De Contacto</h4>
+                <label for="Nombre">Nombre</label><br>
+                <input class="celdas" type="text" id="nombre" name="nombre" required placeholder="Escribe tu nombre">
+                <label for="Email">Email</label><br>
+                <input class="celdas" type="email" id="mail" name="mail" required placeholder="Escribe tu Email">
+                <label for="Telefono">Telefono</label><br>
+                <input class="celdas" type="tel" id="telefono" name="telefono" required placeholder="Numero telefonico">
+                <label for="Comentarios">Comentarios</label><br>
+                <textarea class="coment" type="text" id="comentario" name="comentario" required></textarea>
+                <button class="boton" type="submit"><b>Enviar</b></button>
+                <button class="boton" type="reset"><b>Cancelar</b></button>
+
+            </div>
+        
+
+        </form>
+
+
+        <footer  class="redes">
+            reservas@grupo2.com
+            <a href="#" class="face"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" class="whats"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" class="inst"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="twit"><i class="fa-brands fa-twitter"></i></a>
+        </footer>
+
+    </main>
+</body>
+
+</html>
