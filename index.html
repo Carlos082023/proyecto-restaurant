@@ -1,69 +1,389 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="es">
 
 <head>
-    <title>Inicio</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device width, initial-escale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GROUP2 Restaurante - Experiencias Gastronómicas Únicas</title>
+    <meta name="description" content="GROUP2 Restaurante - Modernos en el estilo y clásicos en el sabor. Disfruta de una experiencia gastronómica excepcional en Buenos Aires.">
     <link href="CSS/estiloresto.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/10727f08ef.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" href="imagenes/logo1.png">
+    <style>
+        /* Estilos específicos para la página de inicio */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('imagenes/hero-bg.jpg') center/cover no-repeat;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            padding-top: 80px;
+            text-align: center;
+        }
 
-    <link rel="icon" type="imagenes/logo1.png" href="imagenes/logo1.png">
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            margin: 0 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #b08d5f;
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+
+        .about-section {
+            padding: 5rem 0;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .features-section {
+            padding: 5rem 0;
+            background-color: var(--white);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .gallery-section {
+            padding: 5rem 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            height: 250px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 1.5rem;
+            color: var(--white);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .testimonials-section {
+            padding: 5rem 0;
+            background-color: var(--bg-light);
+        }
+
+        .testimonials-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .reservation-cta {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('imagenes/reserva-bg.jpg') center/cover no-repeat;
+            padding: 5rem 0;
+            text-align: center;
+            color: var(--white);
+        }
+
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .btn {
+                display: block;
+                margin: 0.5rem auto;
+                width: 80%;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <header class="header">
-        <div class="container logo-nav-container">
-            <a href="index.html" id="logo">GROUP2</a>
+    <!-- Header incluido -->
+    <div data-include="components/header.html"></div>
 
-            <nav class="nav">
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="Menu.html">Menu</a>
-                        <ul>
-                            <li><a href="Menu.html#entradas">Entradas</a></li>
-                            <li><a href="Menu.html#plato-principal">Plato principal</a></li>
-                            <li><a href="Menu.html#postre">Postres</a></li>
-                            <li><a href="Menu.html#bebida">Bebidas</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="Locales.html">Locales</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                    <li><a href="Novedades.html">Novedades</a></li>
-                </ul>
-            </nav>
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">GROUP2 Restaurante</h1>
+            <p class="hero-subtitle">Experiencias gastronómicas excepcionales en Buenos Aires</p>
+            <a href="Menu.html" class="btn btn-primary">Ver menú</a>
+            <a href="contacto.html" class="btn btn-secondary">Reservar mesa</a>
         </div>
-        
-    </header>
-    <main class="main-inicio">
-        <div id="cuerpo-inicio">
-            <img src="imagenes/inicio-chef.jpg" alt="foto">
-            <h2>Quienes somos?</h2>
-            <p>Modernos en el estilo y clásicos en el sabor.
-                Un equipo de profesionales que hemos creado el restaurante donde nos gustaría comer a diario y en las ocasiones especiales. Con menú o a la carta. Con amigos o con clientes, con tiempo para disfrutar o con algo más de prisa porque el trabajo lo requiere.
-                Firmes defensores de que calidad no está en el precio, sino en el producto.
-                Exigentes porque también somos consumidores y estamos convencidos de que la experiencia debe resultar completa.
-                Un buen restaurante ha de serlo por la comida, pero también por el trato y el entorno, por la decoración y el ambiente.
-                Somos nuevos, pero también somos expertos. Natural Lunch, nuestro restaurante en La Finca (Pozuelo), nos ha permitido crecer y creer. Sabemos más y queremos demostrarlo.</p>
-               
-              <p> Ha nacido con un doble objetivo: queremos ser un restaurante donde te guste comer y donde te guste estar. Para ello, disponemos de un espacio funcional, luminoso y elegante.
-               Nuestra cocina abierta responde a la necesidad de compartir nuestra pasión con los clientes. Nos gusta lo que hacemos y nos gusta que lo veas.
-               Nuestra propuesta gastronómica ofrece dos alternativas, siempre de la misma calidad. Con el menú diario hemos querido reinventar una apuesta tradicional sin perder la esencia. En la carta hemos dado rienda suelta a nuestra imaginación y a nuestro deseo de innovar.
-               Podríamos seguir hablando de nosotros, pero POPA ya ha abierto sus puertas y te invitamos a que pases. Nuestra especialidad son los sentidos, más que las palabras. Alguien dijo que alimentar el cuerpo es una forma de alimentar el alma y no pensamos llevarle la contraria.
-               </p>
+    </section>
+
+    <section class="about-section">
+        <div class="container">
+            <h2 class="section-title">¿Quiénes somos?</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="imagenes/inicio-chef.jpg" alt="Nuestro chef" loading="lazy">
+                </div>
+                <div class="about-text">
+                    <p>Modernos en el estilo y clásicos en el sabor. Un equipo de profesionales que hemos creado el restaurante donde nos gustaría comer a diario y en las ocasiones especiales.</p>
+                    <p>Firmes defensores de que la calidad no está en el precio, sino en el producto. Exigentes porque también somos consumidores y estamos convencidos de que la experiencia debe resultar completa.</p>
+                    <p>Un buen restaurante ha de serlo por la comida, pero también por el trato y el entorno, por la decoración y el ambiente. Somos nuevos, pero también somos expertos.</p>
+                    <a href="Menu.html" class="btn btn-primary">Descubrir nuestro menú</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Nuestras especialidades</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Cocina internacional</h3>
+                    <p>Platos de diversas culturas con nuestro toque único y especial.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-wine-glass-alt"></i>
+                    </div>
+                    <h3>Amplia carta de vinos</h3>
+                    <p>Selección cuidadosa de los mejores vinos nacionales e internacionales.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-concierge-bell"></i>
+                    </div>
+                    <h3>Servicio premium</h3>
+                    <p>Atención personalizada para hacer de tu experiencia algo memorable.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">Galería</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="imagenes/enero-restaurante-buenos-aires.jpg" alt="Interior del restaurante" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h3>Ambiente elegante</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="imagenes/plato-principal.webp" alt="Plato principal" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h3>Platos exquisitos</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="imagenes/postre-index.avif" alt="Postres" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h3>Postres irresistibles</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+            <div class="testimonials-container">
+                <div class="testimonial">
+                    <p class="testimonial-text">"Una experiencia gastronómica increíble. La atención es excepcional y cada plato es una obra de arte. Definitivamente volveré."</p>
+                    <p class="testimonial-author">- María López</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"El mejor restaurante al que he ido en Buenos Aires. La combinación de sabores es perfecta y el ambiente es ideal para una cena especial."</p>
+                    <p class="testimonial-author">- Carlos Rodríguez</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="reservation-cta">
+        <div class="container">
+            <h2 class="section-title">¿Listo para una experiencia única?</h2>
+            <p>Reserva tu mesa ahora y disfruta de una velada inolvidable</p>
+            <a href="contacto.html" class="btn btn-primary">Reservar ahora</a>
+        </div>
+    </section>
+
+    <!-- Footer incluido -->
+    <div data-include="components/footer.html"></div>
+
+    <!-- Script de inclusión -->
+    <script src="js/include.js"></script>
+    
+    <!-- Script para animaciones -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animación de elementos al hacer scroll
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.feature-card, .gallery-item, .testimonial');
+                
+                elements.forEach(element => {
+                    const position = element.getBoundingClientRect();
+                    
+                    // Si el elemento está en el viewport
+                    if(position.top < window.innerHeight - 100) {
+                        element.style.opacity = 1;
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
             
-
-            <footer  class="redes">
-                reservas@grupo2.com
-                <a href="#" class="face"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#" class="whats"><i class="fa-brands fa-whatsapp"></i></a>
-                <a href="#" class="inst"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" class="twit"><i class="fa-brands fa-twitter"></i></a>
-            </footer>
-
-
-        </div>
-    </main>
+            // Inicializar opacidad y posición
+            const elements = document.querySelectorAll('.feature-card, .gallery-item, .testimonial');
+            elements.forEach(element => {
+                element.style.opacity = 0;
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            // Ejecutar al cargar y al hacer scroll
+            animateOnScroll();
+            window.addEventListener('scroll', animateOnScroll);
+        });
+    </script>
 </body>
 
 </html>

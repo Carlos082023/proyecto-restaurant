@@ -1,115 +1,59 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-    <title>Inicio</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device width, initial-escale=1.0">
-    <link href="http://localhost/Restaurant/CSS/estiloresto.css" rel="stylesheet" type="text/css">
-    <link rel="icon" type="imagenes/logo1.png" href="imagenes/logo1.png">
-</head>
-
-<body>
-    <header class="header">
-        <div class="container logo-nav-container">
-            <a href="http://localhost/Restaurant/index.html" id="logo">GROUP2</a>
-
-            <nav class="nav">
-                <ul>
-                    <li><a href="http://localhost/Restaurant/index.html">Inicio</a></li>
-                    <li><a href="http://localhost/Restaurant/Menu.html">Menu</a>
-                        <ul>
-                            <li><a href="http://localhost/Restaurant/Menu.html#entradas">Entradas</a></li>
-                            <li><a href="http://localhost/Restaurant/Menu.html#plato-principal">Plato principal</a></li>
-                            <li><a href="http://localhost/Restaurant/Menu.html#postre">Postres</a></li>
-                            <li><a href="http://localhost/Restaurant/Menu.html#bebida">Bebidas</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="http://localhost/Restaurant/Locales.html">Locales</a></li>
-                    <li><a href="http://localhost/Restaurant/contacto.html">Contacto</a></li>
-                    <li><a href="http://localhost/Restaurant/Novedades.html">Novedades</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
 <?php
+// Configuración de cabeceras para respuesta JSON
+header('Content-Type: application/json');
 
- // aqui se pasan los valores de las variables desde el formulario HTML
+// Validar que la solicitud sea POST
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    echo json_encode(['success' => false, 'message' => 'Método no permitido']);
+    exit;
+}
 
-$nombre     =  $_POST['nombre'];
-//$domicilio  =  $_POST['domicilio'];
-//$localidad  =  $_POST['localidad'];
-$telefono   =  $_POST['telefono'];
-$mail       =  $_POST['mail'];
-$comentario =  $_POST['comentario'];
+// Validar y sanitizar datos de entrada
+$nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
+$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+$telefono = filter_input(INPUT_POST, 'telefono', FILTER_SANITIZE_STRING);
+$asunto = filter_input(INPUT_POST, 'asunto', FILTER_SANITIZE_STRING);
+$mensaje = filter_input(INPUT_POST, 'mensaje', FILTER_SANITIZE_STRING);
 
+// Validar campos obligatorios
+if (empty($nombre) || empty($email) || empty($mensaje)) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => 'Por favor, complete todos los campos obligatorios']);
+    exit;
+}
 
-// $conocio = $_POST['conocio'];
-// $donde = $_POST['donde'];
+// Validar formato de email
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => 'El formato del email no es válido']);
+    exit;
+}
 
+// Configurar destinatario y asunto
+$para = "reservas@grupo2.com";
+$asunto_email = "Nuevo mensaje de contacto: " . ($asunto ?: "Consulta general");
 
- // zona de test
+// Construir el cuerpo del mensaje
+$cuerpo_mensaje = "Nuevo mensaje de contacto desde el sitio web:\n\n";
+$cuerpo_mensaje .= "Nombre: " . $nombre . "\n";
+$cuerpo_mensaje .= "Email: " . $email . "\n";
+$cuerpo_mensaje .= "Teléfono: " . ($telefono ?: "No proporcionado") . "\n";
+$cuerpo_mensaje .= "Asunto: " . ($asunto ?: "Consulta general") . "\n\n";
+$cuerpo_mensaje .= "Mensaje:\n" . $mensaje . "\n\n";
+$cuerpo_mensaje .= "Enviado el: " . date('d/m/Y H:i:s');
 
+// Configurar cabeceras del email
+$cabeceras = "From: " . $email . "\r\n";
+$cabeceras .= "Reply-To: " . $email . "\r\n";
+$cabeceras .= "X-Mailer: PHP/" . phpversion() . "\r\n";
+$cabeceras .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
-//echo $nombre;
-//echo $domicilio; 
-// echo $localidad;
-//echo $telefono;
-//echo $mail; 
-//echo $comentario;
-// echo $conocio;
-// echo $donde; 
-
-
-$header = 'From: ' . $mail . " \r\n"; 
-$header .= "X-Mailer: PHP/" . phpversion() . " \r\n"; 
-$header .= "Mime-Version: 1.0 \r\n";
-$header .= "Content-Type: text/plain"; 
-
-//echo $header; 
-// $mensaje = "Este mensaje fue enviado por " . $nombre . ",
- // de la empresa " . $empresa . " \r\n"; 
-// $mensaje .= "Su e-mail es: " . $mail . " \r\n"; 
-// $mensaje .= "Mensaje: " . $_POST['mensaje'] . " \r\n";
- // $mensaje .= "Enviado el " . date('d/m/Y', time()); 
-// $para = 'ejemplo@mail.com';
- // $asunto = 'Asunto del mail recibido'; 
-// mail($para, $asunto, utf8_decode($mensaje), $header);
-
-
-// echo 'Mensaje enviado correctamente'; 
-
- 
-// Reemplazar las xx de infogrupoxx por enumerro de grupo
-// Ejemplo, debe quedar como infogrupo01 
-// Este nombre de usuario despues habra que darlo de alta en el servidor
-// de correo.En ese caso Mercury
-// y tambien en el cliente de correo en este  caso Thuderbird
-
-$para = "infogrupo02@localhost";
-$asunto = "Contacto en Nombre sitio";
-$mensaje = "Nombre: ".$nombre."\nTeléfono: ".$telefono."\nE-mail: ".$mail."\nComentario: ".$comentario;
-
-//
-// cuando esta funcionado sacamos los echo o les ponemos //
-//
-
-// echo $para; 
-//  echo $asunto;
-// echo $mensaje; 
-// echo $header;
-
-
-
-mail($para,$asunto,$mensaje,$header);
-
+// Intentar enviar el correo
+if (mail($para, $asunto_email, $cuerpo_mensaje, $cabeceras)) {
+    echo json_encode(['success' => true, 'message' => 'Mensaje enviado correctamente. Nos pondremos en contacto contigo pronto.']);
+} else {
+    http_response_code(500);
+    echo json_encode(['success' => false, 'message' => 'Error al enviar el mensaje. Por favor, inténtelo de nuevo más tarde.']);
+}
 ?>
-
-<div id="envio">
-<img src="../imagenes/madero.jpg">
-<h3> Su e-mail se ha enviado correctamente </h3>
-</div>
-
-</body>
-
-</html>

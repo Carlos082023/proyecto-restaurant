@@ -1,76 +1,92 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="es">
 
 <head>
-    <title>Novedades</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device width, initial-escale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novedades | GROUP2 Restaurante</title>
     <link href="CSS/estiloresto.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/10727f08ef.js" crossorigin="anonymous"></script>
-    <link rel="icon" type="imagenes/logo1.png" href="imagenes/logo1.png">
+    <link rel="icon" type="image/png" href="imagenes/logo1.png">
 </head>
 
 <body>
+    <!-- Header incluido -->
+    <div data-include="components/header.html"></div>
 
-    <header class="header">
-        <div class="container logo-nav-container">
-            <a href="index.html" id="logo">GROUP2</a>
-
-            <nav class="nav">
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="Menu.html">Menu</a>
-                        <ul>
-                            <li><a href="Menu.html#entradas">Entradas</a></li>
-                            <li><a href="Menu.html#plato-principal">Plato principal</a></li>
-                            <li><a href="Menu.html#postre">Postres</a></li>
-                            <li><a href="Menu.html#bebida">Bebidas</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="Locales.html">Locales</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                    <li><a href="Novedades.html">Novedades</a></li>
-                </ul>
-            </nav>
+    <section class="news-hero">
+        <div class="container">
+            <h1>Novedades</h1>
+            <p>Mantente informado sobre nuestros eventos especiales, promociones y todas las novedades de GROUP2 Restaurante.</p>
         </div>
-    </header>
-    <main class="main">
-        <h1 style="text-align:center">Novedades</h1>
-        <div id="cuerpo-tango">
+    </section>
 
-            <img src="imagenes/vertic_880_0.jpg" alt="foto">
+    <section class="news-container">
+        <div class="container">
+            <article class="news-article">
+                <div class="news-card">
+                    <img src="imagenes/vertic_880_0.jpg" alt="Tango Show en GROUP2" class="news-image">
+                    <div class="news-content">
+                        <span class="news-date"><i class="far fa-calendar-alt"></i> Todos los viernes</span>
+                        <h2 class="news-title">Tango Show Experience</h2>
+                        <span class="news-highlight">Evento especial</span>
+                        <p class="news-text">Tango Show es una joya escondida en el corazón de una de las galerías más antiguas de la ciudad. El salón de baile está totalmente decorado en tonos dorados y terciopelo rojo. Es literalmente un tesoro rescatado de la Belle Époque porteña.</p>
+                        <p class="news-text">El menú es el complemento perfecto para la velada. Es una combinación de las clásicas comidas argentinas con nuestras carnes y empanadas mezcladas con cucina italiana (que ahora también es muy argentina) añadiendo los típicos ravioles italianos. Todo ello ante las exquisitas y elaboradas opciones de postre.</p>
+                        <p class="news-text">Tango Show es la mejor experiencia que ofrece las tradiciones del tango con la modernidad del nuevo tango. Y la oportunidad de vivir el tango de primera mano uniéndote a la lección de tango GRATIS.</p>
+                        <a href="#reservas" class="btn-read-more">Reservar ahora</a>
+                    </div>
+                </div>
+            </article>
 
-            <p>Tango Show es una joya escondida en el corazón de una de las galerías más antiguas de la ciudad. El salón
-                de baile está totalmente decorado en tonos dorados y terciopelo rojo. Es literalmente un tesoro
-                rescatado de la Belle Époque porteña.
-                El menú es el complemento perfecto para la velada. Es una combinación de las clásicas comidas argentinas
-                con nuestras carnes y empanadas mezcladas con cucina italiana (que ahora también es muy argentina)
-                añadiendo los típicos ravioles italianos. Todo ello ante las exquisitas y elaboradas opciones de postre.
-                Tango Show es la mejor experiencia que ofrece las tradiciones del tango con la modernidad del nuevo
-                tango. Y la oportunidad de vivir el tango de primera mano uniéndote a la lección de tango GRATIS.</p>
+            <article class="news-article">
+                <div class="news-card reverse">
+                    <img src="imagenes/findeaño.jpg" alt="Cena de Navidad y Fin de Año" class="news-image">
+                    <div class="news-content">
+                        <span class="news-date"><i class="far fa-calendar-alt"></i> 24 y 31 de diciembre</span>
+                        <h2 class="news-title">Cenas de Navidad y Fin de Año</h2>
+                        <span class="news-highlight">Evento especial</span>
+                        <p class="news-text">Celebrá Navidad y Fin de Año al estilo Group2 con un menú diseñado especialmente para disfrutar y festejar en familia y con amigos.</p>
+                        <p class="news-text">Como siempre con los mejores platos, excelentes vinos y espumantes, una selección de deliciosas guarniciones y una riquísima degustación de helados artesanales.</p>
+                        <p class="news-text">Te invitamos el 24 y el 31 de diciembre a vivir una experiencia única en un ambiente especialmente decorado para estas fechas especiales.</p>
+                        <a href="#reservas" class="btn-read-more">Reservar ahora</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-article">
+                <div class="news-card">
+                    <img src="imagenes/vinos.jpeg" alt="Noche de degustación de vinos" class="news-image">
+                    <div class="news-content">
+                        <span class="news-date"><i class="far fa-calendar-alt"></i> Primer martes de cada mes</span>
+                        <h2 class="news-title">Noche de Degustación de Vinos</h2>
+                        <span class="news-highlight">Evento mensual</span>
+                        <p class="news-text">Únete a nuestro sommelier para una experiencia única de degustación de vinos. Cada mes seleccionamos bodegas especiales y etiquetas premium para acompañar con una selección de quesos y embutidos de primera calidad.</p>
+                        <p class="news-text">Aprende sobre maridajes, técnicas de cata y descubre nuevos favoritos en un ambiente relajado y sofisticado. Plazas limitadas.</p>
+                        <a href="#reservas" class="btn-read-more">Reservar ahora</a>
+                    </div>
+                </div>
+            </article>
         </div>
-        <div id="cuerpo-cena">
+    </section>
 
-
-            <p>Celebrá Navidad y Fin de Año al estilo Group2 con un menú diseñado especialmente para disfrutar y
-                festejar en familia y con amigos. Como siempre con los mejores platos, excelentes vinos y espumantes, una selección de
-                deliciosas guarniciones y una riquísima degustación de helados artesanales.
-             Te invitamos el 24 y el 31 de diciembre a vivir una experiencia única.</p>
-
-            <img src="imagenes/findeaño.jpg" alt="foto">
-
+    <section class="newsletter-section">
+        <div class="container">
+            <h2>¡No te pierdas ninguna novedad!</h2>
+            <p>Suscríbete a nuestro newsletter y recibe información sobre eventos, promociones especiales y más.</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Tu correo electrónico" required>
+                <button type="submit" class="btn-newsletter">Suscribirme</button>
+            </form>
         </div>
-        <footer  class="redes">
-            reservas@grupo2.com
-            <a href="#" class="face"><i class="fa-brands fa-facebook"></i></a>
-            <a href="#" class="whats"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="#" class="inst"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" class="twit"><i class="fa-brands fa-twitter"></i></a>
-        </footer>
+    </section>
 
-    </main>
+    <!-- Footer incluido -->
+    <div data-include="components/footer.html"></div>
 
+    <!-- Script de inclusión -->
+    <script src="js/include.js"></script>
+    <script src="js/script.js"></script>
+    
 </body>
-
 
 </html>

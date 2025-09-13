@@ -1,69 +1,139 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="es">
 
 <head>
-    <title>Contacto</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device width, initial-escale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | GROUP2 Restaurante</title>
     <link href="CSS/estiloresto.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/10727f08ef.js" crossorigin="anonymous"></script>
-    <link rel="icon" type="imagenes/logo1.png" href="imagenes/logo1.png">
+    <link rel="icon" type="image/png" href="imagenes/logo1.png">
 </head>
 
 <body>
+    <!-- Header incluido -->
+    <div data-include="components/header.html"></div>
 
-    <header class="header">
-        <div class="container logo-nav-container">
-            <a href="index.html" id="logo">GROUP2</a>
-
-            <nav class="nav">
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="Menu.html">Menu</a>
-                        <ul>
-                            <li><a href="Menu.html#entradas">Entradas</a></li>
-                            <li><a href="Menu.html#plato-principal">Plato principal</a></li>
-                            <li><a href="Menu.html#postre">Postres</a></li>
-                            <li><a href="Menu.html#bebida">Bebidas</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="Locales.html">Locales</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                    <li><a href="Novedades.html">Novedades</a></li>
-                </ul>
-            </nav>
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Contacto</h1>
+            <p>Estamos aquí para responder todas tus preguntas y ayudarte a planificar tu próxima visita a GROUP2.</p>
         </div>
-    </header>
-    <main class="main">
-        <form method="post" action="envio/envio.php">
-            <div id="contacto">
-                <h4>Formulario De Contacto</h4>
-                <label for="Nombre">Nombre</label><br>
-                <input class="celdas" type="text" id="nombre" name="nombre" required placeholder="Escribe tu nombre">
-                <label for="Email">Email</label><br>
-                <input class="celdas" type="email" id="mail" name="mail" required placeholder="Escribe tu Email">
-                <label for="Telefono">Telefono</label><br>
-                <input class="celdas" type="tel" id="telefono" name="telefono" required placeholder="Numero telefonico">
-                <label for="Comentarios">Comentarios</label><br>
-                <textarea class="coment" type="text" id="comentario" name="comentario" required></textarea>
-                <button class="boton" type="submit"><b>Enviar</b></button>
-                <button class="boton" type="reset"><b>Cancelar</b></button>
+    </section>
 
+    <section class="contact-container">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Información de Contacto</h2>
+                    
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Dirección</h3>
+                            <p>Av. Libertador 4500, Palermo<br>Buenos Aires, Argentina</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Teléfono</h3>
+                            <p>+54 11 1111-1111</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Email</h3>
+                            <p>reservas@grupo2.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Horarios</h3>
+                            <p>Lunes a Sábado: 12:00 - 16:00 / 20:00 - 00:00<br>Domingo: 12:00 - 17:00</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-contact">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h2>Envíanos un mensaje</h2>
+                    <form method="post" action="envio/envio.php" id="contactForm">
+                        <div class="form-group">
+                            <label for="nombre">Nombre completo</label>
+                            <input type="text" id="nombre" name="nombre" class="form-control" required placeholder="Tu nombre completo">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" required placeholder="tu@email.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input type="tel" id="telefono" name="telefono" class="form-control" required placeholder="+54 11 1234-5678">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="asunto">Asunto</label>
+                            <select id="asunto" name="asunto" class="form-control" required>
+                                <option value="">Selecciona un asunto</option>
+                                <option value="reserva">Reserva</option>
+                                <option value="informacion">Información</option>
+                                <option value="eventos">Eventos privados</option>
+                                <option value="quejas">Quejas o sugerencias</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje</label>
+                            <textarea id="mensaje" name="mensaje" class="form-control" required placeholder="Escribe tu mensaje aquí..."></textarea>
+                        </div>
+                        
+                        <div class="form-buttons">
+                            <button type="submit" class="btn-submit">Enviar mensaje</button>
+                            <button type="reset" class="btn-reset">Limpiar formulario</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        
+            
+            <div class="map-container">
+                <h2>Encuéntranos</h2>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3285.297981916148!2d-58.42454308517389!3d-34.57132598046795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb5a12c181347%3A0xcc951cbda99d485e!2sAv.%20del%20Libertador%2C%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1666485002978!5m2!1ses-419!2sar"
+                    class="map-frame" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
 
-        </form>
+    <!-- Footer incluido -->
+    <div data-include="components/footer.html"></div>
 
-
-        <footer  class="redes">
-            reservas@grupo2.com
-            <a href="#" class="face"><i class="fa-brands fa-facebook"></i></a>
-            <a href="#" class="whats"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="#" class="inst"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" class="twit"><i class="fa-brands fa-twitter"></i></a>
-        </footer>
-
-    </main>
+    <!-- Script de inclusión -->
+    <script src="js/include.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
