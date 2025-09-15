@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
     revealElements.forEach((element) => {
       const rect = element.getBoundingClientRect();
       if (rect.top < window.innerHeight - 150) {
-        element.classList.add("active");
+        element.classList.add("visible");
       }
     });
   }

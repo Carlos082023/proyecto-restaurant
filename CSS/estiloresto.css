@@ -718,7 +718,7 @@ body {
    PÁGINA DE NOVEDADES
    ============================================= */
 .news-hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('imagenes/novedades-bg.jpg') center/cover no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
     padding: 120px 0 80px;
     text-align: center;
     color: var(--white);
