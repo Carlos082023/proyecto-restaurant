@@ -2,8 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Variables globales
   const header = document.querySelector(".header");
   const menuNav = document.querySelector(".menu-nav");
-  const menuToggle = document.querySelector(".menu-toggle");
-  const nav = document.querySelector(".nav");
   const navLinks = document.querySelectorAll(".nav-link, .menu-nav-link");
   const allAnchors = document.querySelectorAll('a[href^="#"]');
   const revealElements = document.querySelectorAll(".feature-card, .about-image, .about-text, .news-article");
@@ -54,22 +52,16 @@ document.addEventListener("DOMContentLoaded", function () {
     revealElements.forEach((element) => {
       const rect = element.getBoundingClientRect();
       if (rect.top < window.innerHeight - 150) {
-        element.classList.add("visible");
+        element.classList.add("visible"); // ✅ ahora usa la clase correcta
       }
-    });
-  }
-
-  // Menú móvil
-  if (menuToggle) {
-    menuToggle.addEventListener("click", function () {
-      nav.classList.toggle("active");
-      menuToggle.classList.toggle("active");
     });
   }
 
   // Cerrar menú al hacer clic en un enlace
   navLinks.forEach((link) => {
     link.addEventListener("click", function () {
+      const nav = document.querySelector(".nav");
+      const menuToggle = document.querySelector(".menu-toggle");
       if (nav) nav.classList.remove("active");
       if (menuToggle) menuToggle.classList.remove("active");
     });
