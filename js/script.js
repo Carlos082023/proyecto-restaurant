@@ -1,118 +1,42 @@
-// Menú móvil
 document.addEventListener("DOMContentLoaded", function () {
+  // Variables globales
+  const header = document.querySelector(".header");
+  const menuNav = document.querySelector(".menu-nav");
   const menuToggle = document.querySelector(".menu-toggle");
   const nav = document.querySelector(".nav");
+  const navLinks = document.querySelectorAll(".nav-link, .menu-nav-link");
+  const allAnchors = document.querySelectorAll('a[href^="#"]');
+  const revealElements = document.querySelectorAll(".feature-card, .about-image, .about-text, .news-article");
+  const locationTabs = document.querySelectorAll(".location-tab");
+  const locationContents = document.querySelectorAll(".location-content");
+  const newsletterForm = document.querySelector(".newsletter-form");
+  const contactForm = document.getElementById("contactForm");
 
-  if (menuToggle) {
-    menuToggle.addEventListener("click", function () {
-      nav.classList.toggle("active");
-      menuToggle.classList.toggle("active");
-    });
-  }
+  // Funciones de utilidad
+  function smoothScroll(targetId, offsetAdjustment = 0) {
+    if (targetId === "#") return;
+    
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      const headerHeight = header ? header.offsetHeight : 0;
+      const targetPosition = targetElement.getBoundingClientRect().top + 
+                            window.pageYOffset - 
+                            headerHeight - 
+                            offsetAdjustment;
 
-  // Cerrar menú al hacer clic en un enlace
-  const navLinks = document.querySelectorAll(".nav-link");
-  navLinks.forEach((link) => {
-    link.addEventListener("click", function () {
-      nav.classList.remove("active");
-      menuToggle.classList.remove("active");
-    });
-  });
-
-  // Scroll suave para enlaces internos
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      const targetId = this.getAttribute("href");
-      if (targetId === "#") return;
-
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        const headerHeight = document.querySelector(".header").offsetHeight;
-        const targetPosition =
-          targetElement.getBoundingClientRect().top +
-          window.pageYOffset -
-          headerHeight;
-
-        window.scrollTo({
-          top: targetPosition,
-          behavior: "smooth",
-        });
-      }
-    });
-  });
-
-  // Efecto de revelado al hacer scroll
-  const revealElements = document.querySelectorAll(
-    ".feature-card, .about-image, .about-text"
-  );
-
-  function revealOnScroll() {
-    revealElements.forEach((element) => {
-      const elementTop = element.getBoundingClientRect().top;
-      const elementVisible = 150;
-
-      if (elementTop < window.innerHeight - elementVisible) {
-        element.classList.add("active");
-      }
-    });
-  }
-
-  window.addEventListener("scroll", revealOnScroll);
-  revealOnScroll(); // Ejecutar una vez al cargar
-});
-
-// Script para la navegación del menú
-document.addEventListener("DOMContentLoaded", function () {
-  // Navegación sticky para el menú
-  const menuNav = document.querySelector(".menu-nav");
-  const menuNavOffset = menuNav.offsetTop;
-
-  window.addEventListener("scroll", function () {
-    if (window.pageYOffset >= menuNavOffset) {
-      menuNav.classList.add("sticky");
-    } else {
-      menuNav.classList.remove("sticky");
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth"
+      });
     }
-  });
+  }
 
-  // Navegación suave para los enlaces del menú
-  document.querySelectorAll(".menu-nav-link").forEach((link) => {
-    link.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      const targetId = this.getAttribute("href");
-      const targetElement = document.querySelector(targetId);
-
-      if (targetElement) {
-        const headerHeight = document.querySelector(".header").offsetHeight;
-        const menuNavHeight = document.querySelector(".menu-nav").offsetHeight;
-        const targetPosition =
-          targetElement.getBoundingClientRect().top +
-          window.pageYOffset -
-          headerHeight -
-          menuNavHeight;
-
-        window.scrollTo({
-          top: targetPosition,
-          behavior: "smooth",
-        });
-      }
-    });
-  });
-
-  // Actualizar enlace activo al desplazarse
-  const sections = document.querySelectorAll(".menu-category");
-  const navLinks = document.querySelectorAll(".menu-nav-link");
-
-  window.addEventListener("scroll", function () {
+  function setActiveLink() {
+    const sections = document.querySelectorAll(".menu-category");
     let current = "";
 
     sections.forEach((section) => {
       const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-
       if (window.pageYOffset >= sectionTop - 200) {
         current = section.getAttribute("id");
       }
@@ -124,14 +48,69 @@ document.addEventListener("DOMContentLoaded", function () {
         link.classList.add("active");
       }
     });
+  }
+
+  function checkElementVisibility() {
+    revealElements.forEach((element) => {
+      const rect = element.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 150) {
+        element.classList.add("active");
+      }
+    });
+  }
+
+  // Menú móvil
+  if (menuToggle) {
+    menuToggle.addEventListener("click", function () {
+      nav.classList.toggle("active");
+      menuToggle.classList.toggle("active");
+    });
+  }
+
+  // Cerrar menú al hacer clic en un enlace
+  navLinks.forEach((link) => {
+    link.addEventListener("click", function () {
+      if (nav) nav.classList.remove("active");
+      if (menuToggle) menuToggle.classList.remove("active");
+    });
   });
-});
 
-document.addEventListener("DOMContentLoaded", function () {
+  // Scroll suave para enlaces internos
+  allAnchors.forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute("href");
+      
+      // Para enlaces del menú de categorías, añadir offset del menú sticky
+      const isMenuNavLink = this.classList.contains("menu-nav-link");
+      const offsetAdjustment = isMenuNavLink && menuNav ? menuNav.offsetHeight : 0;
+      
+      smoothScroll(targetId, offsetAdjustment);
+    });
+  });
+
+  // Efecto de revelado al hacer scroll
+  window.addEventListener("scroll", function () {
+    checkElementVisibility();
+    
+    // Navegación sticky para el menú de categorías
+    if (menuNav) {
+      const menuNavOffset = menuNav.offsetTop;
+      if (window.pageYOffset >= menuNavOffset) {
+        menuNav.classList.add("sticky");
+      } else {
+        menuNav.classList.remove("sticky");
+      }
+    }
+    
+    // Actualizar enlace activo en menú de categorías
+    setActiveLink();
+  });
+
+  // Ejecutar una vez al cargar
+  checkElementVisibility();
+
   // Funcionalidad de pestañas de locales
-  const locationTabs = document.querySelectorAll(".location-tab");
-  const locationContents = document.querySelectorAll(".location-content");
-
   locationTabs.forEach((tab) => {
     tab.addEventListener("click", function () {
       const location = this.getAttribute("data-location");
@@ -152,45 +131,24 @@ document.addEventListener("DOMContentLoaded", function () {
   if (window.location.hash) {
     const hash = window.location.hash.substring(1);
     if (["palermo", "sanisidro", "madero"].includes(hash)) {
-      // Remover clase active de todas las pestañas y contenidos
-      locationTabs.forEach((t) => t.classList.remove("active"));
-      locationContents.forEach((c) => c.classList.remove("active"));
-
       // Activar la pestaña y contenido correspondiente
-      document
-        .querySelector(`.location-tab[data-location="${hash}"]`)
-        .classList.add("active");
-      document.getElementById(`${hash}-content`).classList.add("active");
+      const tab = document.querySelector(`.location-tab[data-location="${hash}"]`);
+      if (tab) {
+        tab.classList.add("active");
+        document.getElementById(`${hash}-content`).classList.add("active");
 
-      // Desplazarse suavemente hacia la sección
-      setTimeout(() => {
-        document
-          .querySelector(".locations-container")
-          .scrollIntoView({ behavior: "smooth" });
-      }, 100);
+        // Desplazarse suavemente hacia la sección después de un breve delay
+        setTimeout(() => {
+          const locationsContainer = document.querySelector(".locations-container");
+          if (locationsContainer) {
+            locationsContainer.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 100);
+      }
     }
   }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  // Animación de aparición de artículos al hacer scroll
-  const newsArticles = document.querySelectorAll(".news-article");
-
-  function checkVisibility() {
-    newsArticles.forEach((article) => {
-      const rect = article.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 100) {
-        article.classList.add("visible");
-      }
-    });
-  }
-
-  // Verificar visibilidad al cargar y al hacer scroll
-  checkVisibility();
-  window.addEventListener("scroll", checkVisibility);
 
   // Manejo del formulario de newsletter
-  const newsletterForm = document.querySelector(".newsletter-form");
   if (newsletterForm) {
     newsletterForm.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -203,11 +161,8 @@ document.addEventListener("DOMContentLoaded", function () {
       this.reset();
     });
   }
-});
 
-document.addEventListener("DOMContentLoaded", function () {
-  const contactForm = document.getElementById("contactForm");
-
+  // Manejo del formulario de contacto
   if (contactForm) {
     contactForm.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -229,7 +184,6 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
-            // Mostrar mensaje de éxito
             alert(data.message);
             contactForm.reset();
           } else {
@@ -245,5 +199,20 @@ document.addEventListener("DOMContentLoaded", function () {
           submitBtn.disabled = false;
         });
     });
+  }
+});
+
+// Escuchar cuando se carga el header
+document.addEventListener("componentLoaded", (e) => {
+  if (e.detail.component.includes("header.html")) {
+    const menuToggle = document.querySelector(".menu-toggle");
+    const nav = document.querySelector(".nav");
+
+    if (menuToggle && nav) {
+      menuToggle.addEventListener("click", () => {
+        nav.classList.toggle("active");
+        menuToggle.classList.toggle("active");
+      });
+    }
   }
 });
